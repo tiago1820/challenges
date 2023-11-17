@@ -1,27 +1,23 @@
 const { DataTypes } = require('sequelize');
 
-module.exports = (sequelize) => {
-    sequelize.define('Inventory', {
+module.exports = sequelize => {
+    sequelize.define('Purchase', {
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true,
             allowNull: false,
         },
-        name: {
-            type: DataTypes.STRING,
+        id_user: {
+            type: DataTypes.INTEGER,
             allowNull: false,
         },
-        price: {
+        date_purchase: {
+            type: DataTypes.DATE,
+            allowNull: false,
+        },
+        total_price: {
             type: DataTypes.FLOAT,
-            allowNull: false,
-        },
-        quant: {
-            type: DataTypes.INTEGER,
-            allowNull: false, /*in /on */
-        },
-        min_quant: {
-            type: DataTypes.INTEGER,
             allowNull: false,
         }
     }, { timestamps: false });
