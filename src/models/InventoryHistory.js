@@ -24,6 +24,10 @@ module.exports = sequelize => {
         date_action: {
             type: DataTypes.DATE,
             allowNull: false,
+        },
+        id_company: {
+            type: DataTypes.INTEGER,
+            allowNull: false
         }
     }, { timestamps: false });
 }

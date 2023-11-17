@@ -23,6 +23,10 @@ module.exports = sequelize => {
         sale_price: {
             type: DataTypes.FLOAT,
             allowNull: false,
+        },
+        id_company: {
+            type: DataTypes.INTEGER,
+            allowNull: false
         }
     })
 }

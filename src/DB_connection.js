@@ -12,6 +12,7 @@ const ClientModel = require('./models/Client');
 const SaleModel = require('./models/Sale');
 const SalesProductModel = require('./models/SalesProduct');
 const PurchasesProductModel = require('./models/PurchasesProduct');
+const CompanyModel = require('./models/Company');
 
 const sequelize = new Sequelize(
     `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/myerp`,
@@ -28,6 +29,7 @@ ClientModel(sequelize);
 SaleModel(sequelize);
 SalesProductModel(sequelize);
 PurchasesProductModel(sequelize);
+CompanyModel(sequelize);
 
 const { User } = sequelize.models;
 const { PermissionGroup } = sequelize.models;
@@ -39,6 +41,7 @@ const { Client } = sequelize.models;
 const { Sale } = sequelize.models;
 const { SalesProduct } = sequelize.models;
 const { PurchasesProduct } = sequelize.models;
+const { Company } = sequelize.models;
 
 module.exports = {
     User,
@@ -51,5 +54,6 @@ module.exports = {
     Sale,
     SalesProduct,
     PurchasesProduct,
+    Company,
     conn: sequelize,
 };

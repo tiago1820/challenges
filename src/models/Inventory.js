@@ -23,6 +23,10 @@ module.exports = (sequelize) => {
         min_quant: {
             type: DataTypes.INTEGER,
             allowNull: false,
+        },
+        id_company: {
+            type: DataTypes.INTEGER,
+            allowNull: false
         }
     }, { timestamps: false });
 }

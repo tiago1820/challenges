@@ -15,6 +15,10 @@ module.exports = (sequelize) => {
         params: {
             type: DataTypes.STRING,
             allowNull: false,
+        },
+        id_company: {
+            type: DataTypes.INTEGER,
+            allowNull: false
         }
     }, {timestamps: false});
 }

@@ -20,6 +20,10 @@ module.exports = (sequelize) => {
         group: {
             type: DataTypes.INTEGER,
             allowNull: false,
+        },
+        id_company: {
+            type: DataTypes.INTEGER,
+            allowNull: false
         }
     }, { timestamps: false });
 };
