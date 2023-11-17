@@ -1,5 +1,6 @@
-const express = require('express');
-const router = require('./routes/index');
+const express = require("express");
+const router = require("./routes/index");
+
 const server = express();
 
 // Middlewares
@@ -18,8 +19,6 @@ server.use((req, res, next) => {
 });
 
 server.use(express.json());
-server.use(express.urlencoded({extended: true}));
-
-server.use('/my-erp', router);
+server.use("/myerp", router);
 
 module.exports = server;
