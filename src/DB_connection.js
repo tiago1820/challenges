@@ -6,6 +6,12 @@ const UserModel = require('./models/User');
 const PermissionGroupModel = require('./models/PermissionGroup');
 const PermissionParamModel = require('./models/PermissionParam');
 const InventoryModel = require('./models/Inventory');
+const InventoryHistoryModel = require('./models/InventoryHistory');
+const PurchaseModel = require('./models/Purchase');
+const ClientModel = require('./models/Client');
+const SaleModel = require('./models/Sale');
+const SalesProductModel = require('./models/SalesProduct');
+const PurchasesProductModel = require('./models/PurchasesProduct');
 
 const sequelize = new Sequelize(
     `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/myerp`,
@@ -16,16 +22,34 @@ UserModel(sequelize);
 PermissionGroupModel(sequelize);
 PermissionParamModel(sequelize);
 InventoryModel(sequelize);
+InventoryHistoryModel(sequelize);
+PurchaseModel(sequelize);
+ClientModel(sequelize);
+SaleModel(sequelize);
+SalesProductModel(sequelize);
+PurchasesProductModel(sequelize);
 
 const { User } = sequelize.models;
 const { PermissionGroup } = sequelize.models;
 const { PermissionParam } = sequelize.models;
 const { Inventory } = sequelize.models;
+const { InventoryHistory } = sequelize.models;
+const { Purchase } = sequelize.models;
+const { Client } = sequelize.models;
+const { Sale } = sequelize.models;
+const { SalesProduct } = sequelize.models;
+const { PurchasesProduct } = sequelize.models;
 
 module.exports = {
     User,
     PermissionGroup,
     PermissionParam,
     Inventory,
+    InventoryHistory,
+    Purchase,
+    Client,
+    Sale,
+    SalesProduct,
+    PurchasesProduct,
     conn: sequelize,
 };
