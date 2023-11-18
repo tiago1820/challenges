@@ -14,6 +14,7 @@ const SalesProductModel = require('./models/SalesProduct');
 const PurchasesProductModel = require('./models/PurchasesProduct');
 const CompanyModel = require('./models/Company');
 
+
 const sequelize = new Sequelize(
     `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/myerp`,
     { logging: false, native: false }
@@ -42,6 +43,10 @@ const { Sale } = sequelize.models;
 const { SalesProduct } = sequelize.models;
 const { PurchasesProduct } = sequelize.models;
 const { Company } = sequelize.models;
+
+// Relationships
+User.belongsTo(Company, { foreignKey: 'id_company' });
+Company.hasMany(User, { foreignKey: 'id_company' });
 
 module.exports = {
     User,
