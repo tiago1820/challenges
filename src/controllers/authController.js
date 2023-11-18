@@ -1,6 +1,10 @@
 const { User } = require('../DB_connection');
+const UserHelper = require('../helpers/userHelper');
 
 class AuthController {
+    constructor() {
+        this.userHelper = new UserHelper();
+    }
 
     login = async (req, res) => {
         const { password, email } = req.query;
@@ -11,10 +15,15 @@ class AuthController {
                     where: { email }
                 });
 
-                console.log("foundUser", foundUser);
                 if (!foundUser) return res.status(404).json({ message: 'User not found' });
                 if (foundUser.password !== password) return res.status(403).json({ message: 'Incorrect password' });
-                return res.status(200).json({ user: foundUser, access: true });
+
+                const company = await this.userHelper.getUserCompany(foundUser.id);
+
+                console.log("Company", company);
+
+
+                return res.status(200).json({ user: foundUser, company, access: true });
             }
             return res.status(400).json({ message: 'Data is missing' });
 
