@@ -1,13 +1,14 @@
 const { User } = require('../DB_connection');
+const PermissionGroupHelper = require('../helpers/permissionGroupHelper');
 const UserHelper = require('../helpers/userHelper');
 
 class AuthController {
     constructor() {
         this.userHelper = new UserHelper();
+        this.groupHelper = new PermissionGroupHelper();
     }
 
     login = async (req, res) => {
-        const userInfo = null;
         const { password, email } = req.query;
 
         try {
@@ -21,6 +22,9 @@ class AuthController {
 
                 const company = await this.userHelper.getUserCompany(foundUser.id);
                 const group = await this.userHelper.getUserGroup(foundUser.id);
+                const params = await this.groupHelper.getGroupParams(foundUser.id_group);
+
+                console.log("PARAMS", params);
 
                 // return res.status(200).json({ user: foundUser, company, access: true });
                 return res.status(200).json(
