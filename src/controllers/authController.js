@@ -7,6 +7,7 @@ class AuthController {
     }
 
     login = async (req, res) => {
+        const userInfo = null;
         const { password, email } = req.query;
 
         try {
@@ -19,11 +20,18 @@ class AuthController {
                 if (foundUser.password !== password) return res.status(403).json({ message: 'Incorrect password' });
 
                 const company = await this.userHelper.getUserCompany(foundUser.id);
+                const group = await this.userHelper.getUserGroup(foundUser.id);
 
-                console.log("Company", company);
-
-
-                return res.status(200).json({ user: foundUser, company, access: true });
+                // return res.status(200).json({ user: foundUser, company, access: true });
+                return res.status(200).json(
+                    {
+                        id: foundUser.id,
+                        email: foundUser.email,
+                        company: company.name,
+                        access: true,
+                        group: group.name,
+                    }
+                );
             }
             return res.status(400).json({ message: 'Data is missing' });
 

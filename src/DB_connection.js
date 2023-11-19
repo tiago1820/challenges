@@ -45,8 +45,12 @@ const { PurchasesProduct } = sequelize.models;
 const { Company } = sequelize.models;
 
 // Relationships
-User.belongsTo(Company, { foreignKey: 'id_company' });
-Company.hasMany(User, { foreignKey: 'id_company' });
+User.belongsTo(Company, { foreignKey: 'id_company' });//N
+Company.hasMany(User, { foreignKey: 'id_company' });//1
+
+User.belongsTo(PermissionGroup, { foreignKey: 'id_group' });//N
+PermissionGroup.hasMany(User, { foreignKey: 'id_group' });//1
+
 
 module.exports = {
     User,

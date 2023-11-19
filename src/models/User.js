@@ -17,7 +17,7 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        group: {
+        id_group: {
             type: DataTypes.INTEGER,
             allowNull: false,
         },
