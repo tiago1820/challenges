@@ -1,11 +1,13 @@
 const { User } = require('../DB_connection');
 const PermissionGroupHelper = require('../helpers/permissionGroupHelper');
+const PermissionParamHelper = require('../helpers/permissionParamHelper');
 const UserHelper = require('../helpers/userHelper');
 
 class AuthController {
     constructor() {
         this.userHelper = new UserHelper();
         this.groupHelper = new PermissionGroupHelper();
+        this.paramHelper = new PermissionParamHelper();
     }
 
     login = async (req, res) => {
@@ -23,8 +25,8 @@ class AuthController {
                 const company = await this.userHelper.getUserCompany(foundUser.id);
                 const group = await this.userHelper.getUserGroup(foundUser.id);
                 const params = await this.groupHelper.getGroupParams(foundUser.id_group);
-
-                console.log("PARAMS", params);
+                const paramsAr = params.split(',').map(item => parseInt(item.trim(), 10));
+                const paramsList = await this.paramHelper.getParamsByName(paramsAr);
 
                 // return res.status(200).json({ user: foundUser, company, access: true });
                 return res.status(200).json(
@@ -34,6 +36,7 @@ class AuthController {
                         company: company.name,
                         access: true,
                         group: group.name,
+                        permissions: paramsList,
                     }
                 );
             }
