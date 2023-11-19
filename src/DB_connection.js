@@ -51,6 +51,9 @@ Company.hasMany(User, { foreignKey: 'id_company' });//1
 User.belongsTo(PermissionGroup, { foreignKey: 'id_group' });//N
 PermissionGroup.hasMany(User, { foreignKey: 'id_group' });//1
 
+PermissionGroup.belongsToMany(PermissionParam, { through: "permissionGroup_permissionParamModel" })
+PermissionParam.belongsToMany(PermissionGroup, { through: "permissionGroup_permissionParamModel" })
+
 
 module.exports = {
     User,
