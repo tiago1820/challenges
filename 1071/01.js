@@ -8,7 +8,6 @@ const gcdStrings = (str1, str2) => {
     } else {
         return "";
     }
-
 }
 
 const gcdLength = (a, b) => (b === 0 ? a : gcdLength(b, a % b));
